@@ -17,16 +17,16 @@ from stac_fastapi.extensions.core import (
     FilterExtension,
     SortExtension,
     TokenPaginationExtension,
-    TransactionExtension,
+    # TransactionExtension,
 )
-from stac_fastapi.extensions.third_party import BulkTransactionExtension
+# from stac_fastapi.extensions.third_party import BulkTransactionExtension
 
 settings = ElasticsearchSettings()
 session = Session.create_from_settings(settings)
 
 extensions = [
-    TransactionExtension(client=TransactionsClient(session=session), settings=settings),
-    BulkTransactionExtension(client=BulkTransactionsClient(session=session)),
+    # TransactionExtension(client=TransactionsClient(session=session), settings=settings),
+    # BulkTransactionExtension(client=BulkTransactionsClient(session=session)),
     FieldsExtension(),
     QueryExtension(),
     SortExtension(),
