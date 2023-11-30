@@ -23,11 +23,22 @@ from stac_fastapi.extensions.core import (
 
 settings = ElasticsearchSettings()
 session = Session.create_from_settings(settings)
+default_includes = {
+    "id",
+    "type",
+    "stac_version",
+    "geometry",
+    "bbox",
+    "links",
+    "assets",
+    "properties",
+    "collection",
+}
 
 extensions = [
     # TransactionExtension(client=TransactionsClient(session=session), settings=settings),
     # BulkTransactionExtension(client=BulkTransactionsClient(session=session)),
-    FieldsExtension(),
+    FieldsExtension(default_includes=default_includes),
     QueryExtension(),
     SortExtension(),
     TokenPaginationExtension(),
