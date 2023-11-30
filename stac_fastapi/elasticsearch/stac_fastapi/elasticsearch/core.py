@@ -9,7 +9,6 @@ from urllib.parse import unquote_plus, urljoin
 
 import attr
 import orjson
-import stac_pydantic
 from fastapi import HTTPException, Request
 from overrides import overrides
 from pydantic import ValidationError
@@ -38,6 +37,7 @@ from stac_fastapi.types.core import (
 from stac_fastapi.types.links import CollectionLinks
 from stac_fastapi.types.search import BaseSearchPostRequest
 from stac_fastapi.types.stac import Collection, Collections, Item, ItemCollection
+from .types.item import Item as StacPydanticEditItem
 
 logger = logging.getLogger(__name__)
 
@@ -510,7 +510,7 @@ class CoreClient(AsyncBaseCoreClient):
 
             items = [
                 orjson.loads(
-                    stac_pydantic.Item(**feat).json(**filter_kwargs, exclude_unset=True)
+                    StacPydanticEditItem(**feat).json(**filter_kwargs, exclude_unset=True)
                 )
                 for feat in items
             ]
