@@ -42,7 +42,7 @@ ES_INDEX_NAME_UNSUPPORTED_CHARS = {
 ITEM_INDICES = f"{ITEMS_INDEX_PREFIX}*,-*kibana*,-{COLLECTIONS_INDEX}*"
 
 DEFAULT_SORT = {
-    "properties.datetime": {"order": "desc"},
+    "properties.start_datetime": {"order": "desc"},
     "id": {"order": "desc"},
     "collection": {"order": "desc"},
 }
